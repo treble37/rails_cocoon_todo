@@ -1,0 +1,29 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  %h3 Todos
+  #todos
+    = f.fields_for :todos do |todo|
+      = render 'todo_fields', :f => todo
+    .links
+      = link_to_add_association 'Add Todo', f, :todos
+  .actions
+    = f.submit

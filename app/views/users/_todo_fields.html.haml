@@ -1,0 +1,11 @@
+.nested-fields
+  %h4 Todo
+  .field
+    = f.label :description 
+    %br/
+    = f.text_field :description
+  .field
+    = f.label :due_date
+    %br/
+    = f.text_field :due_date
+  = link_to_remove_association "remove todo", f
